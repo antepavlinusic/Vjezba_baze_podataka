@@ -8,34 +8,42 @@ create database postolar;
 use postolar;
 
 create table segrt(
+    sifra          int not null primary key auto_increment,
+    osoba          int not null,
     zadatak        varchar(50)
 );
 
 create table postolar(
-    segrt          varchar(50)
+    sifra          int not null primary key auto_increment,
+    osoba          int not null,
+    segrt          int not null
 );
 
 create table osoba(
-    ime            varchar(50),
+    sifra          int not null primary key auto_increment,
+    ime            varchar(50) not null,
     prezime        varchar(50),
-    oib            decimal(50),
-    iban           decimal(50)
+    oib            char(11),
+    iban           varchar(50)
 );
 
 create table popravak(
-    statuspopravka varchar(50),
-    cijena         decimal(50),
-    korisnik       varchar(50),
-    kodpopravka    decimal(50)
+    sifra          int not null primary key auto_increment,
+    statuspopravka varchar(50) not null,
+    cijena         decimal(18,2),
+    korisnik       varchar(50) not null,
+    kodpopravka    int
 );
 
 create table obuca(
-    model          varchar(50),
-    velicina       decimal(50),
+    sifra          int not null primary key auto_increment
+    model          varchar(50) not null,
+    velicina       int not null,
     materijal      varchar(50)
 );
 
 create table narudzba(
-    popravak       varchar(50),
-    obuca          varchar(50)
+    sifra          int not null primary key auto_increment,
+    popravak       int not null,
+    obuca          int not null
 );
