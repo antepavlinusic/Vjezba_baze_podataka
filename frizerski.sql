@@ -35,5 +35,13 @@ create table korisnik(
     sifra               int not null primary key auto_increment,
     osoba               int not null,
     vrijemenarucivanja  datetime,
+    djelatnik           int not null,
     usluga              int not null
 );
+
+
+alter table djelatnik   add foreign key (osoba)     references osoba(sifra);
+
+alter table korisnik    add foreign key (djelatnik) references djelatnik(sifra);
+
+alter table korisnik    add foreign key (usluga)    references usluga(sifra);
