@@ -20,13 +20,14 @@ create table medicinska_sestra(
     sifra               int not null primary key auto_increment,
     ime                 varchar(50) not null,
     prezime             varchar(50) not null,
-    odjel               varchar(50)
+    odjel               int not null
 );
 
 create table pacijent(
     sifra               int not null primary key auto_increment,
     ime                 varchar(50) not null,
     prezime             varchar(50) not null,
+    odjel               int not null,
     medicinskikarton    varchar(50) not null
 );
 
@@ -35,3 +36,11 @@ create table odjel(
     medicinska_sestra   int not null,
     doktor              int not null
 );
+
+
+alter table pacijent            add foreign key (odjel)  references odjel(sifra);
+
+alter table odjel               add foreign key (doktor) references doktor(sifra);
+
+alter table medicinska_sestra   add foreign key (odjel)  references odjel(sifra);
+
