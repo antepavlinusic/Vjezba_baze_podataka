@@ -8,26 +8,30 @@ create database doktorska_ordinacija;
 use doktorska_ordinacija;
 
 create table doktor(
-    ime                 varchar(50),
-    prezime             varchar(50),
+    sifra               int not null primary key auto_increment,
+    ime                 varchar(50) not null,
+    prezime             varchar(50) not null,
     titula              varchar(50),
     odjel               varchar(50),
     specijalizacija     varchar(50)
 );
 
 create table medicinska_sestra(
-    ime                 varchar(50),
-    prezime             varchar(50),
+    sifra               int not null primary key auto_increment,
+    ime                 varchar(50) not null,
+    prezime             varchar(50) not null,
     odjel               varchar(50)
 );
 
 create table pacijent(
-    ime                 varchar(50),
-    prezime             varchar(50),
-    medicinskikarton    varchar(50)
+    sifra               int not null primary key auto_increment,
+    ime                 varchar(50) not null,
+    prezime             varchar(50) not null,
+    medicinskikarton    varchar(50) not null
 );
 
 create table odjel(
-    medicinska_sestra   varchar(50),
-    doktor              varchar(50)
+    sifra               int not null primary key auto_increment,
+    medicinska_sestra   int not null,
+    doktor              int not null
 );
