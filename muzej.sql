@@ -8,29 +8,33 @@ create database muzej;
 use muzej;
 
 create table izlozba(
-    naziv           varchar(50),
-    datumpocetka    decimal(50),
-    vrijemepocetka  decimal(50),
-    datumzavrsetka  decimal(50),
-    vrijednost      decimal(50),
-    organizator     varchar(50)
+    sifra           int not null primary key auto_increment,
+    naziv           varchar(50) not null,
+    datumpocetka    datetime,
+    vrijemepocetka  datetime,
+    datumzavrsetka  datetime,
+    vrijednost      decimal(18,2) not null,
+    organizator     varchar(50) not null
 );
 
 create table djela(
-    naziv           varchar(50),
+    sifra           int not null primary key auto_increment,
+    naziv           varchar(50) not null,
     metoda          varchar(50),
     autor           varchar(50)
 );
 
 create table sponzor(
+    sifra           int not null primary key auto_increment,
     naziv           varchar(50),
-    fond            decimal(50)
+    fond            decimal(18,2)
 );
 
 create table kustos(
-    ime             varchar(50),
-    prezime         varchar(50),
-    oib             decimal(50),
-    iban            decimal(50),
-    izlozba         varchar(50)
+    sifra           int not null primary key auto_increment,
+    ime             varchar(50) not null,
+    prezime         varchar(50) not null,
+    oib             char (11),
+    iban            varchar(50),
+    izlozba         int not null
 );
