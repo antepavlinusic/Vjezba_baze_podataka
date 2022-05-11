@@ -16,6 +16,7 @@ create table segrt(
 create table postolar(
     sifra          int not null primary key auto_increment,
     osoba          int not null,
+    popravak       int not null,
     segrt          int not null
 );
 
@@ -30,15 +31,16 @@ create table osoba(
 create table popravak(
     sifra          int not null primary key auto_increment,
     statuspopravka varchar(50) not null,
+    postolar       int not null,
     cijena         decimal(18,2),
     korisnik       varchar(50) not null,
     kodpopravka    int
 );
 
 create table obuca(
-    sifra          int not null primary key auto_increment
+    sifra          int not null primary key auto_increment,
     model          varchar(50) not null,
-    velicina       int not null,
+    velicina       decimal(18,2) not null,
     materijal      varchar(50)
 );
 
@@ -47,3 +49,15 @@ create table narudzba(
     popravak       int not null,
     obuca          int not null
 );
+
+
+alter table popravak add foreign key (postolar) references postolar(sifra);
+alter table postolar add foreign key (osoba)    references osoba(sifra);
+
+alter table segrt    add foreign key (osoba)    references osoba(sifra);
+alter table narudzba add foreign key(popravak)  references popravak(sifra);
+
+alter table narudzba add foreign key(obuca)     references obuca(sifra);
+alter table postolar add foreign key(segrt)     references segrt(sifra);
+
+
