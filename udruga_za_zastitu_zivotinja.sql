@@ -7,31 +7,35 @@ drop database if exists udruga_za_zastitu_zivotinja;
 create database udruga_za_zastitu_zivotinja;
 use udruga_za_zastitu_zivotinja;
 
-create table osoba(
-    ime                         varchar(50),
-    prezime                     varchar(50),
-    oib                         decimal(50),
-    email                       char(11)
+create table clanudruge(
+    sifra                       int not null primary key auto_increment,   
+    ime                         varchar(50) not null,
+    prezime                     varchar(50) not null,
+    oib                         char(11),
+    email                       varchar(50)
 );
 
 create table zivotinja(
-    vrsta                       varchar(50),
-    starost                     varchar(50),
-    tezina                      varchar(50),
-    bolest                      varchar(50),
-    cipiranje                   char(11)
+    sifra                       int not null primary key auto_increment,
+    vrsta                       varchar(50) not null,
+    starost                     varchar(50) not null,
+    tezina                      varchar(50) not null,
+    bolest                      varchar(50) not null,
+    cipiran                     boolean not null
 );
 
 create table sticenikudruge(
-    makasimalnibrojsticenika    varchar(50),
+    sifra                       int not null primary key auto_increment,
+    makasimalnibrojsticenika    int,
     hrana                       varchar(50),
-    zivotinja                   varchar(50),
-    kod                         char(11) 
+    zivotinja                   int not null,
+    kod                         varchar(50) 
 );
 
 create table prostor(
+    sifra                       int not null primary key auto_increment,
     materijal                   varchar(50),
-    visina                      varchar(50),
-    duzina                      varchar(50),
-    sirina                      varchar(50)
+    visina                      decimal(18,2) not null,
+    duzina                      decimal(18,2) not null,
+    sirina                      decimal(18,2) not null
 );
