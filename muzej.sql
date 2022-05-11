@@ -10,17 +10,18 @@ use muzej;
 create table izlozba(
     sifra           int not null primary key auto_increment,
     naziv           varchar(50) not null,
-    datumpocetka    datetime,
-    vrijemepocetka  datetime,
+    datumpocetka    datetime not null,
+    vrijemepocetka  datetime not null,
     datumzavrsetka  datetime,
     vrijednost      decimal(18,2) not null,
-    organizator     varchar(50) not null
+    sponzor         int not null
 );
 
 create table djela(
     sifra           int not null primary key auto_increment,
     naziv           varchar(50) not null,
     metoda          varchar(50),
+    izlozba         int not null,
     autor           varchar(50)
 );
 
@@ -38,3 +39,10 @@ create table kustos(
     iban            varchar(50),
     izlozba         int not null
 );
+
+alter table djela add foreign key (izlozba) references izlozba(sifra);
+
+alter table kustos add foreign key (izlozba) references izlozba(sifra);
+
+alter table izlozba add foreign key (sponzor) references sponzor(sifra);
+
