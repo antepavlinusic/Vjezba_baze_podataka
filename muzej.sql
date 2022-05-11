@@ -1,7 +1,7 @@
 # Linija koja pocne s hash je komentar
 # Ovo je SQL skripta
 # naredba za izvodjenje 
-# C:\xampp\mysql\bin\mysql -uroot < C:\Users\Ante031\Documents\EdunovaPP25\Baze-podataka\Vjezba\muzej.sql
+# C:\xampp\mysql\bin\mysql -uroot < C:\Users\Ante031\Documents\EdunovaPP25\Baze-podataka\Vjezba_baze_podataka\muzej.sql
 
 drop database if exists muzej;
 create database muzej;
