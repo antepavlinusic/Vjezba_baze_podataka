@@ -8,22 +8,27 @@ create database samostan;
 use samostan;
 
 create table svecenik(
-    posao       varchar(50)
+    sifra       int not null primary key auto_increment,
+    osoba       int not null,
 );
 
 create table nadredjenisvecenik(
-    svecenik    varchar(50)
+    sifra       int not null primary key auto_increment
+    osoba       int not null,
+    svecenik    varchar(50) not null
 );
 
 create table osoba(
-    ime         varchar(50),
-    prezime     varchar(50),
-    oib         decimal(50),
-    iban        decimal(50),
+    sifra       int not null primary key auto_increment,
+    ime         varchar(50) not null,
+    prezime     varchar(50)not null,
+    oib         char(11) not null,
+    iban        varchar(50),
     titula      varchar(50)
 );
 
 create table posao(
+    sifra       int not null primary key auto_increment,
     svetamisa   varchar(50),
     ispovjed    varchar(50),
     krstenje    varchar(50),
