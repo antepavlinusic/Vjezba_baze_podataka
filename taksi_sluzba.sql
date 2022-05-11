@@ -8,37 +8,42 @@ create database taksi_sluzba;
 use taksi_sluzba;
 
 create table vozac(
-    ime                 varchar(50),
-    prezime             varchar(50),
-    oib                 decimal(50),
-    iban                decimal(50),
-    brojvozackedozvole  decimal(50),
+    sifra               int not null primary key auto_increment,
+    ime                 varchar(50) not null,
+    prezime             varchar(50) not null,
+    oib                 char(11),
+    iban                varchar(50),
+    brojvozackedozvole  varchar(50),
     ugovor              varchar(50)
 );
 
 create table vozilo(
+    sifra               int not null primary auto_increment,
     proizvodjac         varchar(50),
     model               varchar(50),
-    godinaproizvodnje   decimal(50),
+    godinaproizvodnje   datetime,
     servis              varchar(50),
-    vozac               varchar(50)
+    vozac               int not null
 );
 
 create table voznja(
-    kilometraza         decimal(50),
-    cijena              decimal(50),
-    tarifa              decimal(50)
+    sifra               int not null primary key auto_increment,
+    kilometraza         int not null,
+    cijena              decimal(18,2),
+    tarifa              decimal(18,2) not null
 );
 
 create table putnik(
-    ime                 varchar(50),
-    prezime             varchar(50),
-    brojtelefona        decimal(50),
-    ulica               varchar(50),
-    kucnibroj           decimal(50)
+    sifra               int not null primary key auto_increment,
+    ime                 varchar(50) not null,
+    prezime             varchar(50) not null,
+    brojtelefona        varchar(50) not null,
+    ulica               varchar(50) not null,
+    kucnibroj           varchar(50) not null,
 );
 
 create table posebnausluga(
-    voznja              varchar(50),
-    putnik              varchar(50)
+    sifra               int not null primary key auto_increment
+    voznja              int not null,
+    putnik              int not null
 );
