@@ -45,3 +45,5 @@ alter table djelatnik   add foreign key (osoba)     references osoba(sifra);
 alter table korisnik    add foreign key (djelatnik) references djelatnik(sifra);
 
 alter table korisnik    add foreign key (usluga)    references usluga(sifra);
+
+alter table korisnik    add foreign key (osoba)     references osoba(sifra);
