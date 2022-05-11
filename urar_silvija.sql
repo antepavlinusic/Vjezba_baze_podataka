@@ -1,7 +1,7 @@
 # Linija koja pocne s hash je komentar
 # Ovo je SQL skripta
 # naredba za izvodjenje 
-# C:\xampp\mysql\bin\mysql -uroot < C:\Users\Ante031\Documents\EdunovaPP25\Baze-podataka\Vjezba\urar_silvija.sql
+# C:\xampp\mysql\bin\mysql -uroot < C:\Users\Ante031\Documents\EdunovaPP25\Baze-podataka\Vjezba_baze_podataka\urar_silvija.sql
 
 drop database if exists urar_silvija;
 create database urar_silvija;
