@@ -17,6 +17,7 @@ create table clanudruge(
 
 create table zivotinja(
     sifra                       int not null primary key auto_increment,
+    prostor                     int not null,
     vrsta                       varchar(50) not null,
     starost                     varchar(50) not null,
     tezina                      varchar(50) not null,
@@ -26,6 +27,8 @@ create table zivotinja(
 
 create table sticenikudruge(
     sifra                       int not null primary key auto_increment,
+    prostor                     int not null,
+    clanudruge                  int not null,  
     makasimalnibrojsticenika    int,
     hrana                       varchar(50),
     zivotinja                   int not null,
@@ -39,3 +42,12 @@ create table prostor(
     duzina                      decimal(18,2) not null,
     sirina                      decimal(18,2) not null
 );
+
+alter table sticenikudruge add foreign key (clanudruge) references clanudruge (sifra);
+
+alter table sticenikudruge add foreign key (prostor)    references prostor    (sifra);
+
+alter table zivotinja      add foreign key (prostor)    references prostor    (sifra);
+
+alter table sticenikudruge add foreign key (zivotinja)  references zivotinja  (sifra);
+
