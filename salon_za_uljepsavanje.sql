@@ -24,6 +24,7 @@ create table osoba(
 
 create table materijal(
     sifra                  int not null primary key auto_increment,
+    usluga                 int not null,
     ruz                    varchar(50) not null,
     raspica                varchar(50) not null,
     skarice                varchar(50) not null,
@@ -35,12 +36,25 @@ create table usluga(
     sminkanje              varchar(50),
     pedikura               varchar(50),
     manikura               varchar(50),
+    korisnik               int not null, 
     materijal              varchar(50) not null
 );
 
 create table korisnik(
     sifra                  int not null primary key auto_increment,
     osoba                  int not null,
-    vrijemenarucivanja     datetime,
-    usluga                 varchar (50) not null
+    djelatnica             int not null,
+    vrijemenarucivanja     datetime
 );
+
+alter table djelatnica  add foreign key (osoba)     references osoba(sifra);
+
+alter table korisnik    add foreign key (osoba)     references osoba(sifra);
+
+alter table usluga      add foreign key (korisnik)  references korisnik(sifra);
+
+alter table korisnik    add foreign key(djelatnica) references djelatnica(sifra);
+
+alter table materijal   add foreign key (usluga)    references usluga(sifra);
+
+
