@@ -18,7 +18,7 @@ create table vozac(
 );
 
 create table vozilo(
-    sifra               int not null primary auto_increment,
+    sifra               int not null primary key auto_increment,
     proizvodjac         varchar(50),
     model               varchar(50),
     godinaproizvodnje   datetime,
@@ -28,6 +28,7 @@ create table vozilo(
 
 create table voznja(
     sifra               int not null primary key auto_increment,
+    posebnausluga       int not null,
     kilometraza         int not null,
     cijena              decimal(18,2),
     tarifa              decimal(18,2) not null
@@ -35,15 +36,27 @@ create table voznja(
 
 create table putnik(
     sifra               int not null primary key auto_increment,
+    vozac               int not null,
+    posebnausluga       int not null,
     ime                 varchar(50) not null,
     prezime             varchar(50) not null,
     brojtelefona        varchar(50) not null,
     ulica               varchar(50) not null,
-    kucnibroj           varchar(50) not null,
+    kucnibroj           varchar(50) not null
 );
 
 create table posebnausluga(
-    sifra               int not null primary key auto_increment
+    sifra               int not null primary key auto_increment,
     voznja              int not null,
     putnik              int not null
 );
+
+alter table vozilo add foreign key (vozac) references vozac(sifra);
+
+alter table putnik add foreign key (vozac) references vozac(sifra);
+
+alter table putnik add foreign key (posebnausluga) references posebnausluga(sifra);
+
+alter table voznja add foreign key (posebnausluga) references posebnausluga(sifra);
+
+
