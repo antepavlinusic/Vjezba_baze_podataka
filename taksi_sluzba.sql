@@ -1,7 +1,7 @@
 # Linija koja pocne s hash je komentar
 # Ovo je SQL skripta
 # naredba za izvodjenje 
-# C:\xampp\mysql\bin\mysql -uroot < C:\Users\Ante031\Documents\EdunovaPP25\Baze-podataka\Vjezba_baze_podataka\taksi_sluzba.sql
+# C:\xampp\mysql\bin\mysql -uroot --default_character_set=utf8 < C:\Users\Ante031\Documents\EdunovaPP25\Baze-podataka\Vjezba_baze_podataka\taksi_sluzba.sql
 
 drop database if exists taksi_sluzba;
 create database taksi_sluzba;
