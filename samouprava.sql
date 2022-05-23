@@ -11,7 +11,7 @@ create table zupanija(
     opcina int,
     sifra int not null primary key auto_increment,
     naziv varchar(200),
-    zupan int
+    zupan int not null
 );
 
 create table zupan(
@@ -72,6 +72,35 @@ insert into zupan(zupanija, ime, prezime)
 values ('2', 'Damir', 'Dekanić');
 insert into zupan (zupanija, ime, prezime)
 values ('3', 'Nikola', 'Dobroslavić');
+
+insert into mjesto (opcina,naziv)
+values ('1', 'Čepin');
+insert into mjesto (opcina,naziv)
+values ('1', 'Beketinci');
+insert into mjesto (opcina,naziv)
+values ('2', 'Antunovac');
+insert into mjesto (opcina,naziv)
+values ('2', 'Ivanovac');
+insert into mjesto (opcina,naziv)
+values ('3', 'Mece');
+insert into mjesto (opcina,naziv)
+values ('3','Švajcarnica');
+insert into mjesto (opcina,naziv)
+values ('4', 'Kopačevo');
+insert into mjesto (opcina,naziv)
+values ('4', 'Kozjak');
+insert into mjesto (opcina,naziv)
+values ('5', 'Brođanci');
+insert into mjesto (opcina,naziv)
+values ('5', 'Cerovac');
+insert into mjesto (opcina,naziv)
+values ('6', 'Grabovac');
+insert into mjesto (opcina,naziv)
+values ('6', 'Kozarac');
+
+
+
+
 
 
 
