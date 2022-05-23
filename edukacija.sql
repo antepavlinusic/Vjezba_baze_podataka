@@ -10,7 +10,7 @@ use edukacija;
 create table smjer(
     sifra int not null primary key auto_increment,
     naziv varchar(50) not null,
-    cijena decimal(18,2),
+    cijena decimal(18,2), # kada ne piše not null podrazumjeva se null
     trajanje int,
     upisnina decimal(18,2),
     certificiran boolean
@@ -18,28 +18,28 @@ create table smjer(
 
 create table grupa(
     sifra int not null primary key auto_increment,
-    naziv varchar(50) not null,
+    naziv varchar(20) not null,
     datumpocetka datetime,
     maksimalnopolaznika int,
-    smjer int not null,
-    predavac int
+    smjer int not null, 
+    predavac int 
 );
 
 create table clan(
     sifra int not null primary key auto_increment,
-    polaznik int not null,
-    grupa int not null
+    grupa int not null, 
+    polaznik int not null 
 );
 
 create table polaznik(
     sifra int not null primary key auto_increment,
-    osoba int not null,
-    brojugovora varchar(50)
+    osoba int not null, 
+    brojugovora varchar(10)
 );
 
 create table predavac(
     sifra int not null primary key auto_increment,
-    osoba int not null,
+    osoba int not null, 
     iban varchar(50)
 );
 
@@ -51,14 +51,18 @@ create table osoba(
     oib char(11)
 );
 
+
+
 alter table grupa add foreign key (smjer) references smjer(sifra);
 alter table grupa add foreign key (predavac) references predavac(sifra);
 
-alter table clan add foreign key (polaznik) references polaznik(sifra);
 alter table clan add foreign key (grupa) references grupa(sifra);
+alter table clan add foreign key (polaznik) references polaznik(sifra);
 
+alter table polaznik add foreign key (osoba) references osoba(sifra);
 alter table predavac add foreign key (osoba) references osoba(sifra);
-alter table polaznik add foreign key (osoba) references osoba (sifra);
+
+
 
 
 insert into 
@@ -80,13 +84,10 @@ upisnina,certificiran)
 values (null, 'Java programiranje', 6000, 160, 550, true);
 
 insert into osoba (sifra,ime,prezime,email,oib)
-values (null,'Tomislav','Jakopec','tjakopec@gmail.com',null);
-
-insert into osoba (sifra,ime,prezime,email,oib)
-values (null,'Shaquille','O''Neal','saki@gmail.com',null);
-
-insert into osoba (sifra,ime,prezime,email,oib)
 values 
+(null, 'Ante', 'Pavlinušić','ante.pavlinusic@gmail.com',null),
+(null,'Tomislav','Jakopec','tjakopec@gmail.com',null),
+(null,'Shaquille','O''Neal','saki@gmail.com',null),
 (null,'Pavlinušić','Jona','jonakim.buldozer@gmail.com',null),
 (null,'Pavlinušić','Šimun','s.pavlinusic@gmail.com',null),
 (null,'Pavlinušić','Ivan','ivan.pavlinusic@gmail.com',null),
@@ -98,47 +99,37 @@ values
 (null,'Mikić Vučak','Ana''Marija','amare.mvucak@gmail.com',null),
 (null,'Mikić Vučak','Mario','m.mvucak@gmail.com',null),
 (null,'Mikić Vučak','Marino','marino.mvucak@gmail.com',null),
-(null,'Mikić Vučak','Rita','rita.mvucak@gmail.com',null); 
-# jedna insert naredba može unositi više redaka u tablicu
-# 3 - 17
-insert into osoba (sifra,ime,prezime,email,oib)
-values
-(null,'Todorović','Filip','filip.tod95@gmail.com',null),
-(null,'Majer','Antonio','majer.antonio@gmail.com',null),
-(null,'Filipović','Srđan','srdjanfilipovic991@gmail.com',null),
-(null,'Krnjaković','Filip','f.krnja@gmail.com',null),
-(null,'Jukić','Željko','zeljac00@icloud',null),
-(null,'Pavlinušić','Ante','ante.pavlinusic@gmail.com',null),
-(null,'Bikić','Ante','bikic.tm@gmail.com',null),
-(null,'Rukavina','Antun','antunrukavina@hotmail',null),
-(null,'Poljak','Dino','dinopoljak99@gmail.com',null),
-(null,'Rous','Leonard','leonardrous123@gmail.com',null),
-(null,'Šakić','Marija','sakicmarija35@gmail.com',null),
-(null,'Bukovec','Boris','botaosijek@gmail.com',null),
-(null,'Kovač','Filip','chilim.dj@gmail.com',null),
-(null,'Vuletić','Antonio','avuletic2212@gmail.com',null),
-(null,'Andrija','Kruhoberec','akruhoberec1@outlook.com',null);
+(null,'Mikić Vučak','Rita','rita.mvucak@gmail.com',null), 
+(null,'Krstić','Matija','kmatija@gmail.com',null);
 
+#15-29
 insert into predavac(sifra,osoba,iban)
-values (null,1,null),(null,2,null);
+values (null,1,null),(null,2,null),(null,3,null);
 
 insert into grupa 
 (sifra,naziv,datumpocetka,maksimalnopolaznika,
 smjer,predavac)
-values (null,'TZM22', '2022-08-22',20,2,1);
+values (null,'TZM22', '2022-08-22',20,2,null);
 
 
 insert into grupa 
 (sifra,naziv,datumpocetka,maksimalnopolaznika,
 smjer,predavac)
 values 
-(null,'PP25','2022-04-23',20,1,null);
+(null,'PP25','2022-04-23',30,3,null);
 
 insert into grupa
 (sifra,naziv,datumpocetka,maksimalnopolaznika,
 smjer,predavac)
 values
-(null,'JP26','2022-04-23',20,2,null);
+(null,'JP26','2022-04-23',20,4,null);
+
+insert into grupa
+(sifra,naziv,datumpocetka,maksimalnopolaznika,
+smjer,predavac)
+values (null, 'RAČ22', '2022-04-23',30,1,null);
+
+
 
 
 
@@ -157,23 +148,29 @@ values
 (null,12,null),
 (null,13,null),
 (null,14,null),
-(null,15,null),
-(null,16,null),
-(null,17,null),
-(null,18,null),
-(null,19,null),
-(null,20,null),
-(null,21,null),
-(null,22,null),
-(null,23,null),
-(null,24,null),
-(null,25,null),
-(null,26,null),
-(null,27,null),
-(null,28,null),
-(null,29,null);
+(null,15,null);
 
-insert into clan (grupa,polaznik)
-values (1,1),(1,2),(1,3),(1,4),(1,5),
-(1,6),(1,7),(1,8),(1,9),(1,10),
-(1,11),(1,12),(1,13),(1,14),(1,15);
+
+
+
+insert into clan (sifra,polaznik,grupa)
+values (null,1,1),(null,2,1),(null,3,1),(null,4,1),(null,5,1),
+(null,6,1),(null,7,1),(null,8,1),(null,9,1),(null,10,1),
+(null,11,1),(null,12,1),(null,13,2);
+
+
+
+#select * from  osoba;
+
+#update osoba set oib='82068742855' where sifra=1;
+
+#select * from predavac;
+#delete predavac where sifra=1;
+
+#delete from osoba where sifra=1;
+
+#delete from predavac where sifra=1;
+
+#insert into osoba
+#values ('1','Ante','Pavlinušić','ante.pavlinusic@gmail.com',null); 
+
