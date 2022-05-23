@@ -1,7 +1,7 @@
 # Linija koja pocne s hash je komentar 
 # Ovo je SQL skripta   
 # naredba za izvodjenje
-# C:\xampp\mysql\bin\mysql -uroot < C:\Users\Ante031\Documents\EdunovaPP25\Baze-podataka\Vjezba_baze_podataka\samostan.sql
+# C:\xampp\mysql\bin\mysql -uroot --default_character_set=utf8 < C:\Users\Ante031\Documents\EdunovaPP25\Baze-podataka\Vjezba_baze_podataka\samostan.sql
 
 drop database if exists samostan;
 create database samostan;
